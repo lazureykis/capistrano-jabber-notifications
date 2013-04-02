@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Capistrano::Jabber::Notifications::VERSION
   spec.authors       = ["Pavel Lazureykis"]
   spec.email         = ["lazureykis@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Sending notifications about deploy to jabber}
+  spec.summary       = %q{Sending notifications about deploy to jabber}
   spec.homepage      = ""
   spec.license       = "MIT"
 
