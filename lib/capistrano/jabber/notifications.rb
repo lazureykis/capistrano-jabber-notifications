@@ -34,7 +34,7 @@ module Capistrano
         def send_jabber_message(action, completed = false)
           msg = []
           msg << "#{completed ? 'Completed' : 'Started'} #{action} on #{variables[:stage]} by #{username}"
-          msg << "Time #{Time.now.strftime('%Y%jT%H%MZ')}"
+          msg << "Time #{Time.now.to_s}"
           msg << "Application #{variables[:application]}"
           msg << "Branch #{variables[:branch]}"
           msg << "Revision #{options[:real_revision]}"
