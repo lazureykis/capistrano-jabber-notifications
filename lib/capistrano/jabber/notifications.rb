@@ -89,7 +89,7 @@ Capistrano::Configuration.instance(:must_exist).load do
             server:   fetch(:jabber_server),
             password: fetch(:jabber_password),
             group:    fetch(:jabber_group),
-            members:  fetch(:jabber_members)
+            members:  fetch(:jabber_members),
             real_revision: fetch(:real_revision),
             release_name: fetch(:release_name),
             action: m.to_sym
