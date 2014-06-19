@@ -60,7 +60,7 @@ module Capistrano
           }
 
           notification_list.each { |member|
-            client.send(item.jid)
+            client.send(member)
             m = ::Jabber::Message.new(member, msg).set_type(:normal).set_id('1').set_subject('deploy')
             client.send(m)
           }
