@@ -31,6 +31,21 @@ module Capistrano
 
         private
 
+        def git_log_revisions
+          current, real = variables[:current_revision][0,7], variables[:real_revision][0,7]
+
+          if current == real
+            "GIT: No changes ..."
+          else
+            if (diff = `git log #{current}..#{real} --oneline`) != ""
+              diff = "  " << diff.gsub("\n", "\n    ") << "\n"
+              "\nGIT Changes:\n" + diff
+            else
+              "GIT: Git-log problem ..."
+            end
+          end
+        end
+
         def send_jabber_message(action, completed = false)
           msg = []
           msg << "#{completed ? 'Completed' : 'Started'} #{action} on #{variables[:stage]} by #{username}"
@@ -39,6 +54,7 @@ module Capistrano
           msg << "Branch #{variables[:branch]}"
           msg << "Revision #{options[:real_revision]}"
           msg << "Release name #{options[:release_name]}"
+          msg << git_log_revisions if variables[:source].is_a?(Capistrano::Deploy::SCM::Git)
           msg = msg.join("\r\n")
 
           client = ::Jabber::Client.new(options[:uid].to_s)
