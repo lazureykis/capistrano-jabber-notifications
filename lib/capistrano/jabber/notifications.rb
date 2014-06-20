@@ -61,6 +61,7 @@ module Capistrano
           client.connect(options[:server].to_s)
           client.auth(options[:password].to_s)
           notification_group = options[:group].to_s
+          notification_list = options[:members]
 
           roster = ::Jabber::Roster::Helper.new(client)
 
@@ -71,6 +72,12 @@ module Capistrano
           roster.find_by_group(notification_group).each {|item|
             client.send(item.jid)
             m = ::Jabber::Message.new(item.jid, msg).set_type(:normal).set_id('1').set_subject('deploy')
+            client.send(m)
+          }
+
+          notification_list.each { |member|
+            client.send(member)
+            m = ::Jabber::Message.new(member, msg).set_type(:normal).set_id('1').set_subject('deploy')
             client.send(m)
           }
 
@@ -98,6 +105,7 @@ Capistrano::Configuration.instance(:must_exist).load do
             server:   fetch(:jabber_server),
             password: fetch(:jabber_password),
             group:    fetch(:jabber_group),
+            members:  fetch(:jabber_members),
             real_revision: fetch(:real_revision),
             release_name: fetch(:release_name),
             action: m.to_sym

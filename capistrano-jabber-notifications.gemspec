@@ -6,8 +6,8 @@ require 'capistrano/jabber/notifications/version'
 Gem::Specification.new do |spec|
   spec.name          = "capistrano-jabber-notifications"
   spec.version       = Capistrano::Jabber::Notifications::VERSION
-  spec.authors       = ["Pavel Lazureykis"]
-  spec.email         = ["lazureykis@gmail.com"]
+  spec.authors       = ["Pavel Lazureykis", "NetBrick"]
+  spec.email         = ["lazureykis@gmail.com", "info@netbrick.eu"]
   spec.description   = %q{Sending notifications about deploy to jabber}
   spec.summary       = %q{Sending notifications about deploy to jabber}
   spec.homepage      = ""

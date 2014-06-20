@@ -8,6 +8,10 @@ Add this line to your application's Gemfile:
 
     gem 'capistrano-jabber-notifications'
 
+or
+
+    gem 'capistrano-jabber-notifications', :github => "netbrick/capistrano-jabber-notifications"
+
 And then execute:
 
     $ bundle
@@ -18,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add into capistrano configuration:
+
+    require 'capistrano/jabber/notifications'
+    
+    set :jabber_uid, 'capistrano@jabbim.cz'
+    set :jabber_server, 'jabbim.cz'
+    set :jabber_password, 'superSecretPassword'
+    set :jabber_group, []
+    set :jabber_members, ["developer0@netbrick.cz", "developer1@netbrick.cz"]
+
 
 ## Contributing
 
